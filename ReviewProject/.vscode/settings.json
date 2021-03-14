@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.py": "python",
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "iosfwd": "cpp",
+    "initializer_list": "cpp",
+    "new": "cpp"
+  }
+}
