@@ -17,6 +17,8 @@ class FitnessAppWrapper {
     void loadDailyPlan(fstream &fileStream, ExercisePlan &plan);
     void loadWeeklyPlan(fstream &fileStream, DietPlan weeklyPlan[]);
     void loadWeeklyPlan(fstream &fileStream, ExercisePlan weeklyPlan[]);
+    void editDailyPlan(int day, int options, DietPlan plan[]);
+    void editDailyPlan(int day, int options, ExercisePlan plan[]);
     ostream& displayDailyPlan(ostream &output, const DietPlan& plan);
     ostream& displayDailyPlan(ostream &output, const ExercisePlan& plan);
     ostream& displayWeeklyPlan(ostream& output, const DietPlan plan[]);

@@ -14,6 +14,8 @@ void FitnessAppWrapper::runApp() {
     displayMenu();
     int value;
     cin >> value;
+    int day;
+    int option;
     switch (value){
       case 1:
         cout << "Loading diet plans ..." << endl;
@@ -48,10 +50,28 @@ void FitnessAppWrapper::runApp() {
 
       case 7:
         /* code */
+        cout << "   Please enter which days to edit (1 - 7): ";
+        cin >> day;
+        cout << "               1. Edit goal" << endl;
+        cout << "               2. Edit plane name" << endl;
+        cout << "               3. Edit date" << endl;
+        cout << "        Please select what to edit:" << endl;
+        cin >> option;
+        editDailyPlan(day, option, dietPlan_);
+        displayWeeklyPlan(cout, dietPlan_);
         break;
 
       case 8:
         /* code */
+        cout << "   Please enter which days to edit (1 - 7): ";
+        cin >> day;
+        cout << "               1. Edit goal" << endl;
+        cout << "               2. Edit plane name" << endl;
+        cout << "               3. Edit date" << endl;
+        cout << "        Please select what to edit:" << endl;
+        cin >> option;
+        editDailyPlan(day, option, exercPlan_);
+        displayWeeklyPlan(cout, exercPlan_);
         break;
 
       case 9:
@@ -65,8 +85,50 @@ void FitnessAppWrapper::runApp() {
         break;
     }
   }
+  dietFileWrite.close();
+  exerciseFileWrite.close();
   inputFileDiet_.close();
   inputFileExercise_.close();
+}
+
+void FitnessAppWrapper::editDailyPlan(int day, int option, ExercisePlan plan[]) {
+  switch (option){
+    case 1:
+      /* code */
+      plan[day - 1].editGoal();
+      break;
+
+    default:
+      cout << "    Please input edit values: ";
+      string value;
+      getline(cin, value);
+      if (option == 2) {
+        plan[day - 1].setPlanName(value);
+      } else {
+        plan[day - 1].setDate(value);
+      }
+      break;
+  }
+}
+
+void FitnessAppWrapper::editDailyPlan(int day, int option, DietPlan plan[]) {
+  switch (option){
+    case 1:
+      /* code */
+      plan[day - 1].editGoal();
+      break;
+
+    default:
+      cout << "    Please input edit values: ";
+      string value;
+      getline(cin, value);
+      if (option == 2) {
+        plan[day - 1].setPlanName(value);
+      } else {
+        plan[day - 1].setDate(value);
+      }
+      break;
+  }
 }
 
 void FitnessAppWrapper::loadDailyPlan(fstream &fileStream, DietPlan &plan) {
