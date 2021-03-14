@@ -2,26 +2,6 @@
 
 using namespace std;
 
-// int main(int argc, char **argv) {
-//   ifstream file;
-//   file.open("textfile.txt", ifstream::in);
-//   ofstream fileToWrite("write.txt");
-//   vector<DietPlan> dietPlans;
-//   DietPlan a;
-//   int i = 0;
-//   while (!file.eof()) {
-//     DietPlan temp;
-//     // loadDailyPlan(file, temp);
-//     dietPlans.push_back(temp);
-//     cout << temp;
-//     // file >> arr[i];
-//     // cout << arr[i];
-//     // fileToWrite << arr[i];
-//     i++;
-//   }
-//   return EXIT_SUCCESS;
-// }
-
 void FitnessAppWrapper::runApp() {
   dietPlan_ = new DietPlan[7];
   exercPlan_ = new ExercisePlan[7];
@@ -29,18 +9,20 @@ void FitnessAppWrapper::runApp() {
   inputFileExercise_.open("exercisePlans.txt");
   ofstream dietFileWrite("dietPlansWrite.txt");
   ofstream exerciseFileWrite("exercisePlansWrite.txt");
-  int value;
-  cin >> value;
   bool exit = false;
   while (!exit) {
     displayMenu();
+    int value;
+    cin >> value;
     switch (value){
       case 1:
+        cout << "Loading diet plans ..." << endl;
         loadWeeklyPlan(inputFileDiet_, dietPlan_);
         break;
 
       case 2:
         /* code */
+        cout << "Loading exercise plans ..." << endl;
         loadWeeklyPlan(inputFileExercise_, exercPlan_);
         break;
 
@@ -101,6 +83,7 @@ void FitnessAppWrapper::loadWeeklyPlan(fstream &fileStream, DietPlan weeklyPlan[
     DietPlan temp;
     loadDailyPlan(fileStream, temp);
     weeklyPlan[i] = temp;
+    i++;
   }
 }
 
@@ -110,6 +93,8 @@ void FitnessAppWrapper::loadWeeklyPlan(fstream &fileStream, ExercisePlan weeklyP
     ExercisePlan temp;
     loadDailyPlan(fileStream, temp);
     weeklyPlan[i] = temp;
+    cout << temp << endl;
+    i++;
   }
 }
 
@@ -126,6 +111,7 @@ ostream& FitnessAppWrapper::displayDailyPlan(ostream &output, const ExercisePlan
 ostream& FitnessAppWrapper::displayWeeklyPlan(ostream& output, const DietPlan plan[]) {
   for(int i = 0; i < 7; i++) {
     displayDailyPlan(output, plan[i]);
+    cout << endl;
   }
   return output;
 }
@@ -133,6 +119,7 @@ ostream& FitnessAppWrapper::displayWeeklyPlan(ostream& output, const DietPlan pl
 ostream& FitnessAppWrapper::displayWeeklyPlan(ostream& output, const ExercisePlan plan[]) {
   for(int i = 0; i < 7; i++) {
     displayDailyPlan(output, plan[i]);
+    cout << endl;
   }
   return output;
 }
@@ -162,17 +149,6 @@ ofstream& FitnessAppWrapper::storeWeeklyPlan(ofstream &fileWrite, const Exercise
 }
 
 void FitnessAppWrapper::displayMenu() {
-  // loadWeeklyPlan(inputFileDiet_, dietPlan_);
-  // loadWeeklyPlan(inputFileExercise_, exercPlan_);
-  // ofstream dietFile("dietPlansWrite.txt");
-  // ofstream exerciseFile("exercisePlansWrite.txt");
-  // storeWeeklyPlan(dietFile, dietPlan_);
-  // storeWeeklyPlan(exerciseFile, exercPlan_);
-  // displayWeeklyPlan(cout, dietPlan_);
-  // displayWeeklyPlan(cout, exercPlan_);
-  // dietFile.close();
-  // exerciseFile.close();
-  cout << "Please choose the following options:" << endl;
   cout << "1. Load weekly diet plan from file" << endl;
   cout << "2. Load weekly exercise plan from file." << endl;
   cout << "3. Store weekly diet plan to file." << endl;
@@ -180,8 +156,9 @@ void FitnessAppWrapper::displayMenu() {
   cout << "5. Display weekly diet plan to screen." << endl;
   cout << "6. Display weekly exercise plan to screen." << endl;
   cout << "7. Edit daily diet plan." << endl;
-  cout << "8. Edit daily exercise plan.e" << endl;
+  cout << "8. Edit daily exercise plan." << endl;
   cout << "9. Exit" << endl;
+  cout << "Please choose the following options: ";
 }
 
 FitnessAppWrapper::~FitnessAppWrapper() {

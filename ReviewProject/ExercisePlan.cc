@@ -34,7 +34,8 @@ ExercisePlan::~ExercisePlan() {
 }
 
 ostream& operator<<(ostream &out, const ExercisePlan& plan) {
-  out << " " << plan.getPlanName() << endl <<  plan.getGoal() << endl << plan.getDate() << endl;
+  out << plan.getPlanName() << endl <<  plan.getGoal() << endl << plan.getDate() << endl;
+  return out;
 }
 
 istream& operator>>(istream& in, ExercisePlan& plan) {

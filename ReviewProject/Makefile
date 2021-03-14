@@ -3,8 +3,11 @@ CFLAGS = -Wall -std=c++11 -g
 
 all: app
 
-app: FitnessAppWrapper.o ExercisePlan.o DietPlan.o
-				$(CC) $(CFLAGS) -o app FitnessAppWrapper.o ExercisePlan.o DietPlan.o
+app: clientSide.o FitnessAppWrapper.o ExercisePlan.o DietPlan.o
+				$(CC) $(CFLAGS) -o app clientSide.o FitnessAppWrapper.o ExercisePlan.o DietPlan.o
+
+clientSide.o: clientSide.cc FitnessAppWrapper.h
+				$(CC) $(CFLAGS) -c clientSide.cc
 
 FitnessAppWrapper.o: FitnessAppWrapper.cc ExercisePlan.h DietPlan.h
 				$(CC) $(CFLAGS) -c FitnessAppWrapper.cc
