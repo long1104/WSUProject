@@ -7,7 +7,9 @@ using namespace std;
 
 class Data {
   public:
-    Data(const int customerNumber, const int serviceTime, const int totalTime): customerNumber_(customerNumber), serviceTime_(serviceTime_), totalTime_(totalTime) {}
+    Data(): customerNumber_(-1), serviceTime_(-1), totalTime_(-1) {}
+    Data(const Data &other);
+    Data(const int customerNumber, const int serviceTime, const int totalTime): customerNumber_(customerNumber), serviceTime_(serviceTime), totalTime_(totalTime) {}
     int getCustomerNumber() const {return customerNumber_;};
     int getServiceTime() const {return serviceTime_;};
     int getTotalTime() const {return totalTime_;};

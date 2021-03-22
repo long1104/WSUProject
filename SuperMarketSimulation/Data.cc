@@ -2,6 +2,12 @@
 
 using namespace std;
 
+Data::Data(const Data &other) {
+  customerNumber_ = other.customerNumber_;
+  serviceTime_ = other.serviceTime_;
+  totalTime_ = other.totalTime_;
+}
+
 void Data::setCustomerNumber(const int number) {
   customerNumber_ = number;
 }

@@ -9,10 +9,6 @@ void QueueNode::setNextNode(QueueNode *node) {
   pNext = node;
 }
 
-Data *QueueNode::getData() {
-  return pData;
-}
-
 QueueNode *QueueNode::getNextNode() {
   return pNext;
 }

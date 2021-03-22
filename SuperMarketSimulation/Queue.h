@@ -3,10 +3,12 @@
 
 class Queue {
   public:
-    Queue(): pHead(NULL), pTail(NULL) {}
+    Queue(): pHead(nullptr), pTail(nullptr) {}
     void enqueue(QueueNode *node);
-    void dequeue();
+    Data dequeue();
     void printQueue();
+    bool isEmpty() {return pHead == NULL;};
+    ~Queue();
   private:
     QueueNode *pHead;
     QueueNode *pTail;

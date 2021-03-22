@@ -13,17 +13,28 @@ void Queue::enqueue(QueueNode *node) {
   return;
 }
 
-void Queue::dequeue() {
-  if (pHead == pTail) {
-    pHead = NULL;
-    pTail = NULL;
-  } else {
-    pHead = pHead->getNextNode();
+Data Queue::dequeue() {
+  if (pHead != NULL) {
+    Data returnData = *(pHead->getData());
+    if (pHead == pTail) {
+      delete pHead;
+      pHead = NULL;
+      pTail = NULL;
+    } else {
+      QueueNode *temp = pHead;
+      delete temp;
+      pHead = pHead->getNextNode();
+    }
+    return returnData;
   }
+  return Data();
 }
 
 void Queue::printQueue() {
   QueueNode *current = pHead;
+  if (isEmpty()) {
+    cout << "Empty Queue!!!" << endl;
+  }
   if (pHead != NULL) {
     cout << current->ToString();
     current = current->getNextNode();
@@ -31,5 +42,12 @@ void Queue::printQueue() {
   while (current != NULL) {
     cout << ", " << current->ToString();
     current = current->getNextNode();
+  }
+  cout << endl;
+}
+
+Queue::~Queue() {
+  while (!isEmpty()) {
+    dequeue();
   }
 }
